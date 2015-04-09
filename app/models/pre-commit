@@ -1,0 +1,12 @@
+#!/bin/sh
+echo "my precommit hook"
+git diff --cached --name-only
+rubocop -c .rubocop.yml `git diff --cached --name-only
+`
+exit $?
+echp "rubocop successfull"
+
+
+
+
+

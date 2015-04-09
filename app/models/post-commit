@@ -1,0 +1,29 @@
+#!/home/sivakumar/.rvm/rubies/ruby-2.0.0-p598/bin/ruby
+#
+#
+#
+p "post commit example"
+
+require 'mail'
+
+options = { :address              => "smtp.gmail.com",
+            :port                 => 587,
+            :domain               => 'lvh.me',
+            :user_name            => 'modaliatest@gmail.com',
+            :password             => 'spritlemodalia',
+            :authentication       => 'plain',
+            :enable_starttls_auto => true  }
+
+
+Mail.defaults do
+  delivery_method :smtp, options
+end
+
+mail = Mail.new do
+  from     'me@test.lindsaar.net'
+  to       'sivakumarv@spritle.com'
+  subject  'Here is the image you wanted'
+  body     'Mail from githooks :'  + `git log -1 --stat HEAD`
+end
+
+mail.deliver!
