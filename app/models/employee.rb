@@ -4,6 +4,7 @@ class Employee < ActiveRecord::Base
   end
 
   def temp_code
-    SecureRandom.urlsafe_base64(nil, false)
+    rand = SecureRandom.urlsafe_base64(nil, false)
+    rand + emp_id
   end
 end
